@@ -8,7 +8,7 @@ This assignment covers your basic proficiency with Python.
 def savings(gross_pay, tax_rate, expenses):
     '''Savings.
     2 points.
-
+    
     This function calculates the money remaining
         for an employee after taxes and expenses.
     
@@ -16,7 +16,7 @@ def savings(gross_pay, tax_rate, expenses):
         follow the following process:
         1. Apply the tax rate to the gross pay of the employee; round down
         2. Subtract the expenses from the after-tax pay of the employee
-
+        
     Parameters
     ----------
     gross_pay: int
@@ -25,7 +25,7 @@ def savings(gross_pay, tax_rate, expenses):
         the tax rate for a certain time period, expressed as a number between 0 and 1 (e.g., 0.12)
     expenses: int
         the expenses of an employee for a certain time period, expressed in centavos
-
+        
     Returns
     -------
     int
@@ -33,7 +33,8 @@ def savings(gross_pay, tax_rate, expenses):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    a = int(gross_pay*(1-tax_rate))
+    return int(a-expenses)
 
 def material_waste(total_material, material_units, num_jobs, job_consumption):
     '''Material Waste.
@@ -68,7 +69,9 @@ def material_waste(total_material, material_units, num_jobs, job_consumption):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    total_material_consumed = num_jobs*job_consumption
+    final_material = total_material - total_material_consumed
+    return str(final_material)+material_units
 
 def interest(principal, rate, periods):
     '''Interest.
@@ -98,7 +101,7 @@ def interest(principal, rate, periods):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    return int((principal*rate*periods)+principal)
 
 def body_mass_index(weight, height):
     '''Body Mass Index.
@@ -130,4 +133,5 @@ def body_mass_index(weight, height):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    bmi = float((weight/2.205) / (height[0]/3.281 + height[1]/39.37)**2)
+    return bmi
