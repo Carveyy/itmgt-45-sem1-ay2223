@@ -37,7 +37,10 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    if ord(letter) == 32:
+        return("");
+    else:
+        return str(chr((ord(letter) + int(shift) - 65) %26 + 65))
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher. 
@@ -59,7 +62,14 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    shifted_message = ""
+    
+    for char in message:
+        if ord(char) == 32:
+            shifted_message += char
+        else:
+            shifted_message += str(chr((ord(char) - 65 + shift)%26 + 65)).upper()
+    return shifted_message
 
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter. 
@@ -89,7 +99,11 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    if ord(letter) == 32:
+        return ""
+    else:
+        shifted_letter = chr(((ord(letter) - 65) + (ord(letter_shift) - 65)%26) + 65)
+        return str(shifted_letter)
 
 def vigenere_cipher(message, key):
     '''Vigenere Cipher. 
@@ -122,4 +136,12 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    encrypted_message=""
+    
+    for i in range (len(message)):
+        if message[i] == "":
+            encrypted_message += ""
+        else:
+            shifted_letter = chr(((ord(message[i]) + ord(key[i %len(key)]))%26) + 65)
+            encrypted_message += str(shifted_letter)
+    return encrypted_message
