@@ -41,9 +41,15 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
-
-
+    if from_member in social_graph[to_member]["following"] and to_member in social_graph[from_member]["following"]:
+        return "friends"
+    elif from_member in social_graph[to_member]["following"]:
+        return "followed by"
+    elif to_member in social_graph[from_member]["following"]:
+        return "follower"
+    else:
+        return "no relationship"
+    
 def tic_tac_toe(board):
     '''Tic Tac Toe. 
     15 points.
@@ -70,7 +76,27 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    for row in board:
+        if len(set(row)) == 1:
+            return row[0]
+    
+    for column in board:
+        temp = ""
+        for row in range(len(board)):
+            if x == "":
+                x = board[row][column]
+            elif temp == board[row][column]:
+                if row + 1 == len(board):
+                    return x
+                continue
+            else:
+                break
+    
+    if len(set([board[i][i] for i in range(len(board))])) == 1:
+        return board[0][0]
+    elif len(set([board[i][len(board)-i-1] for i in range(len(board))])) == 1:
+        return board[0][len(board)-1]
+    return "NO WINNER"
 
 def eta(first_stop, second_stop, route_map):
     '''ETA. 
@@ -101,6 +127,41 @@ def eta(first_stop, second_stop, route_map):
     int
         the time it will take the shuttle to travel from first_stop to second_stop
     '''
+    #    if first_stop == "upd" and second_stop == "admu":
+    #    return int(legs[("upd","admu")]["travel_time_mins"])
+    #if first_stop == "admu" and second_stop == "dlsu":
+    #    return int(legs[("admu","dlsu")]["travel_time_mins"])
+    #if first_stop == "dlsu" and second_stop == "upd":
+    #    return int(legs[("dlsu","upd")]["travel_time_mins"])
+    #if first_stop == "upd" and second_stop == "dlsu":
+    #    return int(legs[("upd","admu")]["travel_time_mins"]) + int(legs[("admu","dlsu")]["travel_time_mins"])
+    #if first_stop == "admu" and second_stop == "up":
+    #    return int(legs[("admu","dlsu")]["travel_time_mins"]) + int(legs[("dlsu","up")]["travel_time_mins"])
+    #if first_stop == "dlsu" and second_stop == "admu":
+    #    return int(legs[("dlsu","up")]["travel_time_mins"]) + int(legs[("up","admu")]["travel_time_mins"])
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    key=list(route_map.keys())
+    firstkey=[item[0] for item in key]
+    secondkey=[item[1] for item in key]
+    time=list(route_map.values())
+    answer=[]
+    final=[]
+    
+    position1=firstkey.index(first_stop)
+    position2=secondkey.index(second_stop)
+    
+    for x in range(len(time)):
+        answer=answer+list(time[x].values())
+        
+    if first_stop==second_stop:
+        return sum(answer)
+    elif position1==position2:
+        return answer[position1]
+    elif position1 < position2:
+        final = answer[position1:position2 + 1]
+        return sum(final)
+    elif position1 > position2:
+        final = answer[position1:] + answer[:position2 + 1]
+        return sum(final)
